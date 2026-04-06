@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import CodeBlock from "@/components/CodeBlock";
 import Quiz from "@/components/Quiz";
+import CodingChallenge from "@/components/CodingChallenge";
 
 const quizQuestions = [
   {
@@ -68,6 +69,74 @@ const quizQuestions = [
     correctIndex: 1,
     explanation:
       "Binary search halves the search space with each step. Starting from n elements: n → n/2 → n/4 → ... → 1. The number of halvings to reach 1 is log₂(n). So binary search is O(log n).",
+  },
+  {
+    id: 6,
+    question: "What is the time complexity of this code?\n\nfor (int i = 1; i < n; i *= 2)\n    cout << i;",
+    options: ["O(n)", "O(n²)", "O(log n)", "O(1)"],
+    correctIndex: 2,
+    explanation:
+      "The variable i doubles each iteration (i *= 2), so it takes log₂(n) steps to reach n. Whenever you see a loop variable doubling or halving, think O(log n).",
+  },
+  {
+    id: 7,
+    question: "What does O(n + m) mean?",
+    options: [
+      "The algorithm runs in constant time",
+      "The algorithm depends on two different input sizes",
+      "The algorithm is always O(n²)",
+      "n and m are the same variable",
+    ],
+    correctIndex: 1,
+    explanation:
+      "O(n + m) means the running time depends on two separate input sizes. For example, merging two arrays of size n and m requires iterating through both, giving O(n + m).",
+  },
+  {
+    id: 8,
+    question: "Which operation on std::unordered_map is O(1) average?",
+    options: [
+      "Sorting all keys",
+      "Finding the minimum key",
+      "Inserting a key-value pair",
+      "Printing all elements in order",
+    ],
+    correctIndex: 2,
+    explanation:
+      "unordered_map uses hashing, so insert, find, and erase are all O(1) average case. Sorting requires O(n log n) and finding min requires O(n) since it's unordered.",
+  },
+  {
+    id: 9,
+    question: "What is the space complexity of merge sort?",
+    options: ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+    correctIndex: 2,
+    explanation:
+      "Merge sort needs an auxiliary array of size n for merging. Additionally, the recursion depth is O(log n). Total space = O(n) + O(log n) = O(n) since n dominates.",
+  },
+  {
+    id: 10,
+    question: "Simplify: O(3n² + 5n + 100)",
+    options: ["O(3n²)", "O(n² + n)", "O(n²)", "O(100)"],
+    correctIndex: 2,
+    explanation:
+      "Drop constants (3n² → n²), drop lower-order terms (5n, 100). The dominant term is n², so the answer is O(n²). Big-O only cares about the fastest-growing term.",
+  },
+  {
+    id: 11,
+    question:
+      "A function calls itself recursively n times, each call doing O(1) work. What is the TIME complexity?",
+    options: ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+    correctIndex: 2,
+    explanation:
+      "n recursive calls × O(1) work per call = O(n) total time. The recursion makes n function calls that each do constant work.",
+  },
+  {
+    id: 12,
+    question:
+      "What is the time complexity of std::sort in C++?",
+    options: ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+    correctIndex: 1,
+    explanation:
+      "std::sort uses Introsort (hybrid of quicksort, heapsort, and insertion sort), which guarantees O(n log n) worst-case time complexity.",
   },
 ];
 
@@ -658,6 +727,277 @@ for (int i = 0; i < 1000000; i++) {
         </Warning>
       </Section>
 
+      {/* C++ Syntax Reference */}
+      <Section icon={Code2} title="C++ Syntax Reference">
+        <p className="text-foreground/80 leading-relaxed mb-4">
+          Here are the key C++ syntax patterns you&apos;ll use when analyzing complexity:
+        </p>
+        <CodeBlock
+          title="Loop Syntax — The Building Blocks of Complexity"
+          code={`// Basic for loop — O(n)
+for (int i = 0; i < n; i++) {
+    // body executes n times
+}
+
+// While loop — equivalent to above
+int i = 0;
+while (i < n) {
+    // body
+    i++;
+}
+
+// Doubling loop — O(log n)
+for (int i = 1; i < n; i *= 2) {
+    // i doubles: 1, 2, 4, 8, ... takes log₂(n) steps
+}
+
+// Halving loop — O(log n)
+for (int i = n; i > 0; i /= 2) {
+    // i halves: n, n/2, n/4, ... takes log₂(n) steps
+}
+
+// Nested loops — O(n²)
+for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+        // body executes n × n times
+    }
+}
+
+// Inner loop depends on outer — still O(n²)
+for (int i = 0; i < n; i++) {
+    for (int j = 0; j < i; j++) {
+        // total iterations: 0+1+2+...+(n-1) = n(n-1)/2 = O(n²)
+    }
+}`}
+        />
+        <CodeBlock
+          title="STL Containers — Know Their Complexities"
+          code={`#include <vector>
+#include <unordered_map>
+#include <map>
+#include <algorithm>
+#include <queue>
+using namespace std;
+
+// vector — dynamic array
+vector<int> v = {5, 2, 8, 1};
+v.push_back(10);          // O(1) amortized
+v[0];                     // O(1) access
+v.erase(v.begin());       // O(n) — shifts all elements
+
+// unordered_map — hash table
+unordered_map<string, int> um;
+um["key"] = 42;           // O(1) average insert
+um.find("key");           // O(1) average lookup
+um.count("key");          // O(1) average — returns 0 or 1
+
+// map — balanced BST (ordered)
+map<string, int> m;
+m["key"] = 42;            // O(log n) insert
+m.find("key");            // O(log n) lookup
+
+// sorting
+sort(v.begin(), v.end()); // O(n log n)
+
+// priority_queue — max-heap
+priority_queue<int> pq;
+pq.push(10);              // O(log n)
+pq.top();                 // O(1)
+pq.pop();                 // O(log n)`}
+        />
+        <CodeBlock
+          title="Recursion Syntax"
+          code={`// Basic recursion — O(n) time, O(n) space (call stack)
+int factorial(int n) {
+    if (n <= 1) return 1;        // base case
+    return n * factorial(n - 1); // recursive call
+}
+
+// Binary recursion — O(2ⁿ) time! (exponential)
+int fib(int n) {
+    if (n <= 1) return n;
+    return fib(n - 1) + fib(n - 2);  // TWO recursive calls
+}
+
+// Divide and conquer — O(n log n)
+void mergeSort(vector<int>& arr, int l, int r) {
+    if (l >= r) return;
+    int mid = (l + r) / 2;
+    mergeSort(arr, l, mid);       // half the array
+    mergeSort(arr, mid + 1, r);   // other half
+    merge(arr, l, mid, r);        // O(n) merge step
+}`}
+        />
+      </Section>
+
+      {/* Coding Challenges */}
+      <Section icon={Code2} title="Coding Challenges">
+        <p className="text-foreground/80 leading-relaxed mb-4">
+          Write C++ code to solve these problems. Focus on getting the <strong>correct time complexity</strong>.
+        </p>
+
+        <CodingChallenge
+          title="Challenge 1: Identify the Complexity"
+          description="Fill in the comment with the correct Big-O time complexity for each function."
+          starterCode={`// What is the time complexity of each function?
+
+int funcA(int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            sum += i + j;
+        }
+    }
+    return sum;
+}
+// funcA complexity: O(???)
+
+int funcB(int n) {
+    int sum = 0;
+    for (int i = 1; i < n; i *= 2) {
+        sum += i;
+    }
+    return sum;
+}
+// funcB complexity: O(???)
+
+int funcC(int n) {
+    if (n <= 0) return 0;
+    return funcC(n - 1) + funcC(n - 1);
+}
+// funcC complexity: O(???)`}
+          solution={`// funcA: Two nested loops both running n times
+int funcA(int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            sum += i + j;
+        }
+    }
+    return sum;
+}
+// funcA complexity: O(n²)
+
+// funcB: Loop variable doubles each time
+int funcB(int n) {
+    int sum = 0;
+    for (int i = 1; i < n; i *= 2) {
+        sum += i;
+    }
+    return sum;
+}
+// funcB complexity: O(log n)
+
+// funcC: Each call spawns 2 calls, depth = n
+int funcC(int n) {
+    if (n <= 0) return 0;
+    return funcC(n - 1) + funcC(n - 1);
+}
+// funcC complexity: O(2ⁿ)`}
+          hints={[
+            "funcA: Count how many times the inner body executes. Outer loop × inner loop.",
+            "funcB: How many times can you double 1 before reaching n?",
+            "funcC: Draw the recursion tree. Each level has twice as many calls as the previous.",
+          ]}
+          testDescription="Replace each O(???) with the correct Big-O notation."
+          validateAnswer={(code) => {
+            const lower = code.toLowerCase().replace(/\s/g, "");
+            const hasN2 = lower.includes("o(n²)") || lower.includes("o(n^2)") || lower.includes("o(n*n)");
+            const hasLogN = lower.includes("o(logn)") || lower.includes("o(log(n))");
+            const has2N = lower.includes("o(2ⁿ)") || lower.includes("o(2^n)") || lower.includes("o(2n)");
+            return hasN2 && hasLogN && has2N;
+          }}
+        />
+
+        <CodingChallenge
+          title="Challenge 2: Optimize This Code"
+          description="The function below checks if an array has any duplicates. It's O(n²). Rewrite it to run in O(n) using a hash set."
+          starterCode={`// Current: O(n²) — too slow!
+// Rewrite using unordered_set to make it O(n)
+
+#include <unordered_set>
+using namespace std;
+
+bool hasDuplicate(vector<int>& nums) {
+    // Your O(n) solution here:
+
+}`}
+          solution={`#include <unordered_set>
+using namespace std;
+
+bool hasDuplicate(vector<int>& nums) {
+    unordered_set<int> seen;
+    for (int num : nums) {
+        if (seen.count(num)) {
+            return true;   // Found a duplicate!
+        }
+        seen.insert(num);  // O(1) average
+    }
+    return false;
+}
+// Time: O(n) — single pass through array
+// Space: O(n) — hash set stores up to n elements`}
+          hints={[
+            "Create an unordered_set to track numbers you've already seen.",
+            "For each number, check if it's already in the set before inserting.",
+            "unordered_set::count() and insert() are both O(1) average.",
+          ]}
+          testDescription="Your solution should use unordered_set and have O(n) time complexity."
+          validateAnswer={(code) => {
+            const lower = code.toLowerCase().replace(/\s/g, "");
+            return (
+              lower.includes("unordered_set") &&
+              (lower.includes("seen.count") || lower.includes("seen.find") || lower.includes("seen.contains")) &&
+              lower.includes("seen.insert")
+            );
+          }}
+        />
+
+        <CodingChallenge
+          title="Challenge 3: Write a Binary Search"
+          description="Implement binary search that returns the index of target in a sorted array, or -1 if not found. Your solution must be O(log n)."
+          starterCode={`int binarySearch(vector<int>& arr, int target) {
+    // Write your O(log n) solution here:
+
+}`}
+          solution={`int binarySearch(vector<int>& arr, int target) {
+    int left = 0, right = arr.size() - 1;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    
+    return -1;
+}
+// Time: O(log n) — halves search space each step
+// Space: O(1) — only uses a few variables`}
+          hints={[
+            "Use two pointers: left and right. Start with left = 0, right = size - 1.",
+            "Calculate mid = left + (right - left) / 2 to avoid integer overflow.",
+            "If arr[mid] == target, return mid. If arr[mid] < target, search the right half. Otherwise, search the left half.",
+          ]}
+          testDescription="Your solution should use a while loop with left/right pointers and run in O(log n)."
+          validateAnswer={(code) => {
+            const lower = code.toLowerCase().replace(/\s/g, "");
+            return (
+              lower.includes("while") &&
+              (lower.includes("left") || lower.includes("lo") || lower.includes("low")) &&
+              (lower.includes("right") || lower.includes("hi") || lower.includes("high")) &&
+              lower.includes("mid") &&
+              lower.includes("return")
+            );
+          }}
+        />
+      </Section>
+
       {/* Summary */}
       <Section icon={Trophy} title="Key Takeaways">
         <div className="bg-gradient-to-br from-accent/10 to-accent-light/5 rounded-xl border border-accent/20 p-6">
@@ -712,7 +1052,7 @@ for (int i = 0; i < 1000000; i++) {
               onClick={() => setShowQuiz(true)}
               className="px-8 py-3 bg-warning hover:bg-warning/80 text-black rounded-xl font-semibold transition-colors"
             >
-              Start Quiz (5 Questions)
+              Start Quiz (12 Questions)
             </button>
           </motion.div>
         ) : (
