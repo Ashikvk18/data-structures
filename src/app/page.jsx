@@ -8,6 +8,7 @@ import LessonLayout from "@/components/LessonLayout";
 import Lesson1BigO from "@/components/lessons/Lesson1BigO";
 import Lesson2ArraysStrings from "@/components/lessons/Lesson2ArraysStrings";
 import Lesson3Recursion from "@/components/lessons/Lesson3Recursion";
+import Lesson4LinkedLists from "@/components/lessons/Lesson4LinkedLists";
 import { lessons } from "@/lib/lessons";
 import {
   getProgress,
@@ -70,6 +71,8 @@ export default function Home() {
         return <Lesson2ArraysStrings onQuizComplete={handleQuizComplete} />;
       case 3:
         return <Lesson3Recursion onQuizComplete={handleQuizComplete} />;
+      case 4:
+        return <Lesson4LinkedLists onQuizComplete={handleQuizComplete} />;
       default:
         return (
           <div className="text-center py-16">
