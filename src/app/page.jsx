@@ -13,6 +13,7 @@ import Lesson5Stacks from "@/components/lessons/Lesson5Stacks";
 import Lesson6Queues from "@/components/lessons/Lesson6Queues";
 import Lesson7HashTables from "@/components/lessons/Lesson7HashTables";
 import Lesson8HashSets from "@/components/lessons/Lesson8HashSets";
+import Lesson9BinaryTrees from "@/components/lessons/Lesson9BinaryTrees";
 import { lessons } from "@/lib/lessons";
 import {
   getProgress,
@@ -85,6 +86,8 @@ export default function Home() {
         return <Lesson7HashTables onQuizComplete={handleQuizComplete} />;
       case 8:
         return <Lesson8HashSets onQuizComplete={handleQuizComplete} />;
+      case 9:
+        return <Lesson9BinaryTrees onQuizComplete={handleQuizComplete} />;
       default:
         return (
           <div className="text-center py-16">
