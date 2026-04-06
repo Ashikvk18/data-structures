@@ -17,6 +17,7 @@ import Lesson9BinaryTrees from "@/components/lessons/Lesson9BinaryTrees";
 import Lesson10BST from "@/components/lessons/Lesson10BST";
 import Lesson11BalancedBST from "@/components/lessons/Lesson11BalancedBST";
 import Lesson12Heaps from "@/components/lessons/Lesson12Heaps";
+import Lesson13Tries from "@/components/lessons/Lesson13Tries";
 import { lessons } from "@/lib/lessons";
 import {
   getProgress,
@@ -97,6 +98,8 @@ export default function Home() {
         return <Lesson11BalancedBST onQuizComplete={handleQuizComplete} />;
       case 12:
         return <Lesson12Heaps onQuizComplete={handleQuizComplete} />;
+      case 13:
+        return <Lesson13Tries onQuizComplete={handleQuizComplete} />;
       default:
         return (
           <div className="text-center py-16">
