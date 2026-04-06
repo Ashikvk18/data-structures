@@ -6,6 +6,7 @@ import Sidebar from "@/components/Sidebar";
 import HomePage from "@/components/HomePage";
 import LessonLayout from "@/components/LessonLayout";
 import Lesson1BigO from "@/components/lessons/Lesson1BigO";
+import Lesson2ArraysStrings from "@/components/lessons/Lesson2ArraysStrings";
 import { lessons } from "@/lib/lessons";
 import {
   getProgress,
@@ -64,6 +65,8 @@ export default function Home() {
     switch (currentLessonId) {
       case 1:
         return <Lesson1BigO onQuizComplete={handleQuizComplete} />;
+      case 2:
+        return <Lesson2ArraysStrings onQuizComplete={handleQuizComplete} />;
       default:
         return (
           <div className="text-center py-16">
