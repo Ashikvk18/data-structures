@@ -155,7 +155,7 @@ const quizQuestions = [
   },
 ];
 
-export default function Lesson11Heaps({ onQuizComplete }) {
+export default function Lesson12Heaps({ onQuizComplete }) {
   const [showQuiz, setShowQuiz] = useState(false);
 
   const Section = ({ icon: Icon, title, children }) => (
