@@ -5,25 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Sidebar from "@/components/Sidebar";
 import HomePage from "@/components/HomePage";
 import LessonLayout from "@/components/LessonLayout";
-import Lesson1BigO from "@/components/lessons/Lesson1BigO";
-import Lesson2ArraysStrings from "@/components/lessons/Lesson2ArraysStrings";
-import Lesson3Recursion from "@/components/lessons/Lesson3Recursion";
-import Lesson4LinkedLists from "@/components/lessons/Lesson4LinkedLists";
-import Lesson5Stacks from "@/components/lessons/Lesson5Stacks";
-import Lesson6Queues from "@/components/lessons/Lesson6Queues";
-import Lesson7HashTables from "@/components/lessons/Lesson7HashTables";
-import Lesson8HashSets from "@/components/lessons/Lesson8HashSets";
-import Lesson9BinaryTrees from "@/components/lessons/Lesson9BinaryTrees";
-import Lesson10BST from "@/components/lessons/Lesson10BST";
-import Lesson11BalancedBST from "@/components/lessons/Lesson11BalancedBST";
-import Lesson12Heaps from "@/components/lessons/Lesson12Heaps";
-import Lesson13Tries from "@/components/lessons/Lesson13Tries";
-import Lesson14GraphFundamentals from "@/components/lessons/Lesson14GraphFundamentals";
-import Lesson15BfsDfs from "@/components/lessons/Lesson15BfsDfs";
-import Lesson16ShortestPath from "@/components/lessons/Lesson16ShortestPath";
-import Lesson17TopologicalSort from "@/components/lessons/Lesson17TopologicalSort";
-import Lesson18MST from "@/components/lessons/Lesson18MST";
-import Lesson19UnionFind from "@/components/lessons/Lesson19UnionFind";
+import Lesson1ArraysStructuresPointers from "@/components/lessons/Lesson1ArraysStructuresPointers";
 import { lessons } from "@/lib/lessons";
 import {
   getProgress,
@@ -81,43 +63,7 @@ export default function Home() {
   const renderLesson = () => {
     switch (currentLessonId) {
       case 1:
-        return <Lesson1BigO onQuizComplete={handleQuizComplete} />;
-      case 2:
-        return <Lesson2ArraysStrings onQuizComplete={handleQuizComplete} />;
-      case 3:
-        return <Lesson3Recursion onQuizComplete={handleQuizComplete} />;
-      case 4:
-        return <Lesson4LinkedLists onQuizComplete={handleQuizComplete} />;
-      case 5:
-        return <Lesson5Stacks onQuizComplete={handleQuizComplete} />;
-      case 6:
-        return <Lesson6Queues onQuizComplete={handleQuizComplete} />;
-      case 7:
-        return <Lesson7HashTables onQuizComplete={handleQuizComplete} />;
-      case 8:
-        return <Lesson8HashSets onQuizComplete={handleQuizComplete} />;
-      case 9:
-        return <Lesson9BinaryTrees onQuizComplete={handleQuizComplete} />;
-      case 10:
-        return <Lesson10BST onQuizComplete={handleQuizComplete} />;
-      case 11:
-        return <Lesson11BalancedBST onQuizComplete={handleQuizComplete} />;
-      case 12:
-        return <Lesson12Heaps onQuizComplete={handleQuizComplete} />;
-      case 13:
-        return <Lesson13Tries onQuizComplete={handleQuizComplete} />;
-      case 14:
-        return <Lesson14GraphFundamentals onQuizComplete={handleQuizComplete} />;
-      case 15:
-        return <Lesson15BfsDfs onQuizComplete={handleQuizComplete} />;
-      case 16:
-        return <Lesson16ShortestPath onQuizComplete={handleQuizComplete} />;
-      case 17:
-        return <Lesson17TopologicalSort onQuizComplete={handleQuizComplete} />;
-      case 18:
-        return <Lesson18MST onQuizComplete={handleQuizComplete} />;
-      case 19:
-        return <Lesson19UnionFind onQuizComplete={handleQuizComplete} />;
+        return <Lesson1ArraysStructuresPointers onQuizComplete={handleQuizComplete} />;
       default:
         return (
           <div className="text-center py-16">
