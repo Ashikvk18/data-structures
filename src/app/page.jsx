@@ -21,6 +21,7 @@ import Lesson13Tries from "@/components/lessons/Lesson13Tries";
 import Lesson14GraphFundamentals from "@/components/lessons/Lesson14GraphFundamentals";
 import Lesson15BfsDfs from "@/components/lessons/Lesson15BfsDfs";
 import Lesson16ShortestPath from "@/components/lessons/Lesson16ShortestPath";
+import Lesson17TopologicalSort from "@/components/lessons/Lesson17TopologicalSort";
 import { lessons } from "@/lib/lessons";
 import {
   getProgress,
@@ -109,6 +110,8 @@ export default function Home() {
         return <Lesson15BfsDfs onQuizComplete={handleQuizComplete} />;
       case 16:
         return <Lesson16ShortestPath onQuizComplete={handleQuizComplete} />;
+      case 17:
+        return <Lesson17TopologicalSort onQuizComplete={handleQuizComplete} />;
       default:
         return (
           <div className="text-center py-16">
